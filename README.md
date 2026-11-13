@@ -168,12 +168,9 @@ library; those are already installed by `requirements.txt`.
 - `usability_report.md` — usability test tasks, observations, issues, and
   design changes.
 - `usability_report.pdf` — formatted usability report for submission.
-- `usability_report.tex` — usability report source.
 - `feedback_log.md` — concise early-feedback log and the resulting fixes.
-- `reflection.tex` — one-page reflection source.
 - `reflection.pdf` — compiled reflection for submission.
 - `cover_page.pdf` — required submission cover page.
-- `cover_page.tex` — cover page source.
 - `screenshots/` — annotated interaction screenshots.
 - `assets/styles.css` — dashboard-specific layout styling.
 
