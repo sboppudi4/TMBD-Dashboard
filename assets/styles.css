@@ -1,0 +1,79 @@
+/* Enclose the filter controls and distinguish them from chart cards. */
+.filter-card {
+  border: 0;
+  background: #f8fafc;
+}
+
+.filter-card .card-body {
+  padding: 1.25rem;
+}
+
+/* Keep the filter header visually separate from its controls. */
+.filter-card-header {
+  padding-bottom: 1rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Align labels and controls consistently across the filter grid. */
+.filter-grid {
+  align-items: end;
+}
+
+/* Add a small visual break before the secondary rating control. */
+.filter-grid-secondary {
+  margin-top: 0.25rem;
+}
+
+/* Prevent long labels or controls from forcing columns wider. */
+.filter-control {
+  min-width: 0;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Establish a compact, consistent hierarchy for filter labels. */
+.filter-label {
+  display: block;
+  min-height: 1.35rem;
+  margin-bottom: 0.65rem;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Keep dropdowns and sliders at matching heights. */
+.filter-dropdown {
+  min-height: 38px;
+}
+
+.filter-dropdown .Select-control {
+  min-height: 38px;
+  border-color: #cbd5e1;
+}
+
+/* Give the range sliders enough space for the track and handles. */
+.filter-slider {
+  min-height: 38px;
+  padding: 0.6rem 0.45rem 0.15rem;
+}
+
+.filter-slider .rc-slider {
+  margin: 0.7rem 0 0.2rem;
+}
+
+/* Tooltips provide the active values, so static marks are unnecessary. */
+.filter-slider .rc-slider-mark {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  /* Add separation when the multi-column filter grid stacks on smaller screens. */
+  .filter-control + .filter-control {
+    margin-top: 0.25rem;
+  }
+
+  .filter-grid-secondary {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,152 @@
+================================================================================
+                           Information Visualization
+
+                         TMDB Movie Dashboard Project
+                     MINI-PROJECT 2: INTERACTIVE DASHBOARD
+                          Week 5: Proposal + Sketches
+================================================================================
+
+Full name:          Satvik Boppudi
+Date of submission: 14 October 2026
+Course name:        Information Visualization
+Instructor:         Raz Saremi
+Assignment title:   Mini-Project 2: Interactive Dashboard
+Collaborators:      None
+================================================================================
+
+
+================================================================================
+MINI-PROJECT 2: INTERACTIVE DASHBOARD
+Week 5: Proposal + Sketches
+================================================================================
+Student:    Satvik Boppudi          Course:  Information Visualization
+Instructor: Raz Saremi              Project: TMDB Movie Financial & Reception Dashboard
+================================================================================
+
+1. DATASET CHOICE
+=================
+Dataset:
+  TMDB 5000 Movies Dataset
+  Source: Kaggle via The Movie Database (TMDB) API
+  URL: https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata
+
+Rationale:
+  Film economics represents a compelling visual domain because massive capital
+  investments do not guarantee box office profitability or critical praise.
+  Spanning 4,803 films from 1916 to 2017, this dataset enables exploring how
+  budgets correlate with revenue, critical reception, popularity, and historical
+  shifts across cinematic genres.
+
+Dimensions (Mixing Quantitative, Ordinal/Temporal, and Categorical):
+  * Production Budget (budget_millions): Quantitative (Continuous, $0M to $380M)
+    Production expenditure in millions USD.
+  * Box Office Revenue (revenue_millions): Quantitative (Continuous, $0M to $2,788M)
+    Worldwide gross box office revenue in millions USD.
+  * Popularity Score (popularity): Quantitative (Continuous)
+    TMDB algorithmic user engagement metric.
+  * Audience Vote Average (vote_average): Quantitative (Continuous Interval, 0.0 to 10.0)
+    Crowdsourced user rating average.
+  * Release Year (release_year): Temporal / Ordinal (1916 to 2017)
+    Year of theatrical release, establishing chronological order.
+  * Primary Genre (primary_genre): Categorical / Nominal
+    Top 6 primary genres (Adventure, Action, Comedy, Drama, Horror, Crime) and "Other".
+  * Movie Count (movie_count): Quantitative (Discrete)
+    Frequency count of movies within rating distribution intervals.
+
+
+2. THREE RESEARCH QUESTIONS
+===========================
+RQ1: Financial Scale, Return, and Critical Acclaim
+  How does a movie's production budget correlate with its worldwide box office
+  revenue, and do higher-budget blockbuster productions reliably achieve
+  superior audience ratings and popularity?
+
+RQ2: Genre Profitability vs. Audience Sentiment
+  Which primary movie genres produce the highest average box office return,
+  and does high financial return align with favorable audience ratings?
+
+RQ3: Cinematic Era Evolution and Rating Distributions
+  How has average film revenue evolved across cinematic eras (from early
+  cinema to the modern blockbuster era), and do release eras exhibit distinct
+  audience rating profiles?
+
+
+3. CHANNEL JUSTIFICATION TABLE
+==============================
+Data Variable       | Data Type     | Mark        | Channel        | Principle          | Justification
+Budget ($M)         | Quantitative  | Point       | X-position     | Effectiveness      | Position on common scale is Rank 1 for quantitative accuracy.
+                    |               |             |                | (Cleveland)        |
+Revenue ($M)        | Quantitative  | Point       | Y-position     | Effectiveness      | Position on common scale allows instant magnitude comparison.
+                    |               |             |                | (Cleveland)        |
+Popularity          | Quantitative  | Point       | Area (Circle)  | Stevens' Law       | Perceived sub-linearly (beta ~ 0.7); secondary cue without dominating spatial axes.
+                    |               |             |                |                    |
+Vote Average        | Quantitative  | Point       | Color (Viridis)| Expressiveness &   | Ordered continuous data on ordered lightness ramp; colorblind safe.
+                    |               |             |                | Accessibility      |
+Primary Genre       | Categorical   | Bar         | Y-position     | Expressiveness &   | Nominal categories mapped to discrete rows; labels read horizontally.
+                    |               |             | (Rows)         | Legibility         |
+Avg Revenue (Genre) | Quantitative  | Bar         | Length         | Effectiveness      | Length on aligned scale allows rapid, pre-attentive comparison across genres.
+                    |               |             | (X-axis)       | (Cleveland)        |
+Release Year        | Temporal      | Line/Point  | X-position     | Convention &       | Cultural convention: time flows left to right. Line conveys continuity.
+                    |               |             |                | Expressiveness     |
+Avg Revenue (Time)  | Quantitative  | Line vertex | Y-position     | Effectiveness      | Vertical position on aligned scale traces historical revenue trajectory.
+                    |               |             |                | (Cleveland)        |
+Vote Average (Bins) | Quantitative  | Bar         | X-position     | Expressiveness     | Ordered 0.5-point intervals along horizontal axis show distribution shape.
+                    |               |             |                |                    |
+Movie Count         | Quantitative  | Bar         | Height         | Effectiveness      | Bar height on common baseline allows accurate frequency comparison.
+                    |               |             | (Y-axis)       | (Cleveland)        |
+
+
+4. WIREFRAME SKETCHES OF DASHBOARD LAYOUT
+=========================================
+
++---------------------------------------------------------------------------------------------------+
+|  TMDB MOVIE FINANCIAL & RECEPTION DASHBOARD                                                       |
+|  Explore relationships among movie budget, revenue, popularity, genre, release year, and ratings. |
++---------------------------------------------------------------------------------------------------+
+|  FILTERS & CONTROLS                                                                               |
+|                                                                                                   |
+|  Primary Genre:          Budget ($M):             Revenue ($M):            Release Year:          |
+|  [ All Genres        v]  0 [=======o=====] 380    0 [====o========] 2788   1916 [====o====] 2017  |
+|                                                                                                   |
+|  Vote Average Rating Range:                                                 [ RESET ALL FILTERS ] |
+|  0.0 [=============================o=====================================] 10.0                   |
++---------------------------------------------------------------------------------------------------+
+|  KPI SUMMARY CARDS                                                                                |
+|                                                                                                   |
+|  +-----------------------------+  +-----------------------------+  +----------------------------+ |
+|  | COMPLETE FINANCIAL DATA     |  | AVERAGE WORLDWIDE REVENUE   |  | AVERAGE AUDIENCE RATING    | |
+|  | 3,226 Movies                |  | $121.4M                     |  | 6.31 / 10.0                | |
+|  +-----------------------------+  +-----------------------------+  +----------------------------+ |
++---------------------------------------------------------------------------------------------------+
+|  COORDINATED ANALYTICAL VIEWS                                                                     |
+|                                                                                                   |
+|  +--------------------------------------------+  +----------------------------------------------+ |
+|  | VIEW 1: BUDGET VS. REVENUE SCATTER PLOT    |  | VIEW 2: AVG REVENUE BY PRIMARY GENRE         | |
+|  |                                            |  |                                              | |
+|  | Rev ($M)                                   |  | Genre                                        | |
+|  |  ^                    . * (Viridis Color)  |  | Adventure [========================] $243.6M | |
+|  |  |             *   .  o                    |  | Other     [================] $157.2M         | |
+|  |  |        .  *   o                         |  | Action    [===============] $156.4M          | |
+|  |  |   . * o  (Size = Popularity)            |  | Comedy    [========] $85.1M                  | |
+|  |  |  * o                                    |  | Drama     [=======] $73.4M                   | |
+|  |  +----------------------------------->     |  | Horror    [======] $66.8M                    | |
+|  |  0           Budget ($M)              380  |  | Crime     [======] $65.8M                    | |
+|  |                                            |  |           0             Avg Rev ($M)     250 | |
+|  |  [Interactions: Box/Lasso Linked Brushing] |  |  [Interactions: Click bar to cross-filter]   | |
+|  +--------------------------------------------+  +----------------------------------------------+ |
+|                                                                                                   |
+|  +--------------------------------------------+  +----------------------------------------------+ |
+|  | VIEW 3: AVG REVENUE TREND OVER TIME        |  | VIEW 4: MOVIE RATING DISTRIBUTION            | |
+|  |                                            |  |                                              | |
+|  | Rev ($M)                                   |  | Count                                        | |
+|  |  ^                                /---*    |  |   ^                  ||                      | |
+|  |  |                               /         |  |   |                ||||||                    | |
+|  |  |                      /\      /          |  |   |               ||||||||                   | |
+|  |  |          /\         /  \    /           |  |   |             ||||||||||||                 | |
+|  |  |   ______/  \_______/    \--/            |  |   |            ||||||||||||||                | |
+|  |  +----------------------------------->     |  |   +----------------------------------->      |  |
+|  |  1916          Release Year          2017  |  |   0.0             Vote Average          10.0 | |
+|  |                                            |  |                                              | |
+|  |  [Interactions: Drag to select era range]  |  |  [Interactions: Click bin to isolate rating] | |
+|  +--------------------------------------------+  +----------------------------------------------+ |
++---------------------------------------------------------------------------------------------------+
